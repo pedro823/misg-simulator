@@ -1,0 +1,18 @@
+{
+  "br-en": {
+    "couraçado": "battleship",
+    "canhoneiro": "gunboat",
+    "contra-torpedeiro": "destroyer",
+    "submarino": "submarine",
+    "torpedeiro": "torpedo_boat",
+    "cruzeiro": "cruizer"
+  },
+  "en-br": {
+    "battleship": "couraçado",
+    "gunboat": "canhoneiro",
+    "destroyer": "destroyer",
+    "submarine": "submarino",
+    "torpedo_boat": "torpedeiro",
+    "cruizer": "cruzeiro"
+  }
+}

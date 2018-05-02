@@ -1,0 +1,36 @@
+[
+  {
+    "team": 1,
+    "army": [
+      {
+        "unit_type": "A",
+        "quantity": 300
+      }
+    ],
+    "navy": [
+    ],
+    "air_force": [
+      {
+        "unit_type": "plane",
+        "quantity": 4
+      }
+    ]
+  },
+  {
+    "team": 2,
+    "army": [
+      {
+        "unit_type": "A",
+        "quantity": 300
+      }
+    ],
+    "navy": [
+      {
+        "unit_type": "submarine",
+        "quantity": 200
+      }
+    ],
+    "air_force": [
+    ]
+  }
+]

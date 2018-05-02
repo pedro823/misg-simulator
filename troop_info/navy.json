@@ -1,0 +1,102 @@
+{
+  "category": "navy",
+  "classes": {
+    "battleship": {
+      "stealth": 0.90,
+      "prob_hit": 0.9,
+      "hp": 2000,
+      "ATK": 500,
+      "DEF": 500,
+      "hits_submarines": false,
+      "hits_army": true,
+      "cannot_attack": [
+      ],
+      "advantage_against": [
+      ],
+      "batch_size": 5
+    },
+    "cruizer": {
+      "stealth": 0.95,
+      "prob_hit": 0.7,
+      "hp": 400,
+      "ATK": 20,
+      "DEF": 20,
+      "hits_submarines": false,
+      "hits_army": true,
+      "cannot_attack": [
+      ],
+      "advantage_against": [
+      ],
+      "batch_size": 5
+    },
+    "torpedo_boat": {
+      "stealth": 0.5,
+      "prob_hit": 0.8,
+      "hp": 700,
+      "ATK": 350,
+      "DEF": 350,
+      "hits_submarines": true,
+      "hits_army": false,
+      "cannot_attack": [
+      ],
+      "advantage_against": [
+
+      ],
+      "batch_size": 5
+    },
+    "destroyer": {
+      "stealth": 0.5,
+      "prob_hit": 0.7,
+      "hp": 700,
+      "ATK": 250,
+      "DEF": 250,
+      "hits_submarines": false,
+      "hits_army": true,
+      "cannot_attack": [
+      ],
+      "advantage_against": [
+        "torpedo_boat"
+      ],
+      "batch_size": 5
+    },
+    "gunboat": {
+      "stealth": 0.5,
+      "prob_hit": 0.7,
+      "hp": 1200,
+      "ATK": 250,
+      "DEF": 250,
+      "hits_submarines": false,
+      "hits_army": true,
+      "cannot_attack": [
+      ],
+      "advantage_against": [
+      ],
+      "batch_size": 5
+    },
+    "submarine": {
+      "stealth": 0.07,
+      "prob_hit": 0.3,
+      "hp": 400,
+      "ATK": 350,
+      "DEF": 350,
+      "hits_submarines": true,
+      "hits_army": false,
+      "cannot_attack": [
+        "elite",
+        "tank",
+        "flamethrower",
+        "spy",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "plane",
+        "zeppelin"
+      ],
+      "advantage_against": [
+      ],
+      "batch_size": 5
+    }
+  }
+}
