@@ -1,9 +1,17 @@
 import datetime
 import math
 import json
+import os
+import os.path
+from util import is_windows, unix_to_nt
 class Logger:
 
     def __init__(self, logfile):
+        if is_windows():
+            log_file = unix_to_nt(log_file)
+        folder = os.path.abspath(os.path.join(logfile, os.pardir))
+        if not os.path.exists(folder):
+            os.mkdir(folder)
         self.f = open(logfile, 'w+')
         self.date = datetime.datetime.now()
 

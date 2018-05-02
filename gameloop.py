@@ -247,11 +247,9 @@ def gameloop(a_units, b_units, game_scenario, round_size=50, log_file=None):
     """ main gameloop """
     from logger import Logger
     if log_file is None:
-        from datetime import datetime
-        log_file = 'logs/log_battle_' + datetime.now().isoformat() + '.txt'
+        from time import time
+        log_file = 'logs/log_battle_' + str(int(time())) + '.txt'
 
-    if is_windows():
-        log_file = unix_to_nt(log_file)
     logger = Logger(log_file)
     logger.log_header()
     logger.log_initial_position(a_units, b_units, game_scenario)
