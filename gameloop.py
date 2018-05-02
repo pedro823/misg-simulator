@@ -1,4 +1,5 @@
 from game_scenario import GameScenario
+from util import is_windows, unix_to_nt
 from unit import Unit
 import random
 
@@ -17,19 +18,27 @@ def air_force_condition(type):
 
 def parse_battle_info(file_name='battle_info/battle_info.json', luck_factor=0):
     import json
-
+    if is_windows():
+        file_name = unix_to_nt(file_name)
     a_units = []
     b_units = []
     team_quantities = [0, 0]
     game_scenario = GameScenario(luck=luck_factor)
+    army_file = 'troop_info/army.json'
+    navy_file = 'troop_info/navy.json'
+    af_file = 'troop_info/air_force.json'
+    if is_windows():
+        army_file = unix_to_nt(army_file)
+        navy_file = unix_to_nt(navy_file)
+        af_file = unix_to_nt(af_file)
 
     with open(file_name, 'r') as f:
         data = json.load(f)
-    with open('troop_info/army.json') as f:
+    with open(army_file) as f:
         army_data = json.load(f)
-    with open('troop_info/navy.json') as f:
+    with open(navy_file) as f:
         navy_data = json.load(f)
-    with open('troop_info/air_force.json') as f:
+    with open(af_file) as f:
         air_force_data = json.load(f)
 
     if len(data) > 2:
@@ -241,6 +250,8 @@ def gameloop(a_units, b_units, game_scenario, round_size=50, log_file=None):
         from datetime import datetime
         log_file = 'logs/log_battle_' + datetime.now().isoformat() + '.txt'
 
+    if is_windows():
+        log_file = unix_to_nt(log_file)
     logger = Logger(log_file)
     logger.log_header()
     logger.log_initial_position(a_units, b_units, game_scenario)
