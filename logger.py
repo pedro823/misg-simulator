@@ -8,7 +8,7 @@ class Logger:
 
     def __init__(self, logfile):
         if is_windows():
-            log_file = unix_to_nt(log_file)
+            logfile = unix_to_nt(logfile)
         folder = os.path.abspath(os.path.join(logfile, os.pardir))
         if not os.path.exists(folder):
             os.mkdir(folder)
