@@ -38,9 +38,16 @@
       "hits_submarines": true,
       "hits_army": false,
       "cannot_attack": [
+        "plane",
+        "zeppelin"
       ],
       "advantage_against": [
-
+        "submarine",
+        "destroyer",
+        "battleship",
+        "gunboat",
+        "torpedo_boat",
+        "cruizer"
       ],
       "batch_size": 5
     },

@@ -2,17 +2,12 @@ import random as r
 class Unit:
     """ Defines generically an unit that attacks. """
 
-    cant_attack_dict = {
-        'all': [
-
-        ]
-    }
-
     def __init__(self, team, type, hp, ATK, DEF, game_scenario,
                  cannot_attack={},
                  advantage_against={},
                  multiple=1,
                  prob_hit=0.2,
+                 spot=1,
                  condition_to_hit=None):
         """ Valid arguments:
             team: 1 or 2. Which team is this unit on.
@@ -34,6 +29,8 @@ class Unit:
         # self.cannot_attack = self.develop_cannot_attack(cannot_attack)
         self.cannot_attack = cannot_attack
         self.advantage_against = advantage_against
+        self.spot = spot
+        self.is_spotted = False
         if condition_to_hit is None:
             self.condition_to_hit = self.__null_condition
         else:
@@ -51,24 +48,35 @@ class Unit:
 
     def attack(self, other):
         """ Tries and attack the other """
-        if not self.is_dead() and other.type not in self.cannot_attack:
-            if self.condition_to_hit(self):
-                mult = self.game_scenario.a_army_size if self.team == 1 else self.game_scenario.b_army_size
-                rand_number = r.random() * mult
-                if rand_number > other.prob_hit:
-                    print('---')
-                    # Hurts 50 to 100% its damage, with luck
-                    luck = (self.game_scenario.luck if self.team == 1 else -self.game_scenario.luck) / 5
-                    if luck < 0: luck = 0
-                    hurt_damage = round(self.ATK * self.multiple * (0.5 + luck + (r.random() / 2)), 0)
-                    # advantage_against: adds 10% to the damage
-                    if other.type in self.advantage_against: hurt_damage *= 1.1
-                    print(self.type, '(team', str(self.team) + ') hit', other.type, 'for', hurt_damage, 'damage')
-                    other.hurt(hurt_damage)
-                    print(other.type, 'new hp', other.hp)
-                    print('---')
-            else:
-                print(self.type, 'could not attack!')
+        if not other.is_spotted:
+            # Tries to spot other
+            if r.random() < other.spot:
+                other.is_spotted = True
+        if other.is_spotted:
+            if not self.is_dead() and other.type not in self.cannot_attack:
+                if self.condition_to_hit(self):
+                    # Attacks
+                    mult = self.game_scenario.a_army_size if self.team == 1 else self.game_scenario.b_army_size
+                    rand_number = r.random() * mult
+                    if rand_number > other.prob_hit:
+                        print('---')
+                        # Hurts 50 to 100% its damage, with luck
+                        luck = (self.game_scenario.luck if self.team == 1 else -self.game_scenario.luck) / 5
+                        if luck < 0: luck = 0
+                        hurt_damage = round(self.ATK * self.multiple * (0.5 + luck + (r.random() / 2)), 0)
+                        # advantage_against: adds 10% to the damage
+                        if other.type in self.advantage_against: hurt_damage *= 1.1
+                        print(self.multiple, self.type, '(team', str(self.team) + ') hit', other.type, 'for', hurt_damage, 'damage')
+                        other.hurt(hurt_damage)
+                        print(other.type, 'new hp', other.hp)
+                        print('---')
+                    # increases the chance of being spotted
+                    if self.spot < 1:
+                        self.spot *= 1.3
+                else:
+                    print(self.type, 'could not attack!')
+        else:
+            print(self.type, 'could not spot', other.type, '!')
 
     def can_attack(self, other):
         return not other.type in self.cannot_attack

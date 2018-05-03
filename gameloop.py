@@ -104,8 +104,8 @@ def parse_battle_info(file_name='battle_info/battle_info.json', luck_factor=0):
                 raise Exception('Não existe uma classe de exército chamada ' + str(navy_type) + '!')
 
             batch_size = navy_data['classes'][navy_type]['batch_size']
-            batches = army_item['quantity'] // batch_size
-            remaining_batch = army_item['quantity'] % batch_size
+            batches = navy_item['quantity'] // batch_size
+            remaining_batch = navy_item['quantity'] % batch_size
             for i in range(batches):
                 v.append(Unit(
                     team=team,
@@ -116,6 +116,7 @@ def parse_battle_info(file_name='battle_info/battle_info.json', luck_factor=0):
                     cannot_attack=set(navy_data['classes'][navy_type]['cannot_attack']),
                     advantage_against=set(navy_data['classes'][navy_type]['advantage_against']),
                     game_scenario=game_scenario,
+                    spot=navy_data['classes'][navy_type]['stealth'],
                     prob_hit=navy_data['classes'][navy_type]['prob_hit'],
                     multiple=batch_size
                 ))
@@ -129,6 +130,7 @@ def parse_battle_info(file_name='battle_info/battle_info.json', luck_factor=0):
                     cannot_attack=set(navy_data['classes'][navy_type]['cannot_attack']),
                     advantage_against=set(navy_data['classes'][navy_type]['advantage_against']),
                     game_scenario=game_scenario,
+                    spot=navy_data['classes'][navy_type]['stealth'],
                     prob_hit=navy_data['classes'][navy_type]['prob_hit'],
                     multiple=remaining_batch
                 ))

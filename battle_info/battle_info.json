@@ -2,32 +2,40 @@
   {
     "team": 1,
     "army": [
-      {
-        "unit_type": "A",
-        "quantity": 300
-      }
     ],
     "navy": [
+      {
+        "unit_type": "cruizer",
+        "quantity": 10
+      },
+      {
+        "unit_type": "battleship",
+        "quantity": 10
+      },
+      {
+        "unit_type": "gunboat",
+        "quantity": 8
+      }
     ],
     "air_force": [
-      {
-        "unit_type": "plane",
-        "quantity": 4
-      }
     ]
   },
   {
     "team": 2,
     "army": [
-      {
-        "unit_type": "A",
-        "quantity": 300
-      }
     ],
     "navy": [
       {
         "unit_type": "submarine",
-        "quantity": 200
+        "quantity": 15
+      },
+      {
+        "unit_type": "torpedo_boat",
+        "quantity": 8
+      },
+      {
+        "unit_type": "gunboat",
+        "quantity": 15
       }
     ],
     "air_force": [
